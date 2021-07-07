@@ -1,10 +1,12 @@
 
-package com.reactlibrary;
+package com.reactlibraryusbconnect;
+
+import android.content.Context;
+import android.widget.Toast;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
 
 public class RNUsbConnectionModule extends ReactContextBaseJavaModule {
 
@@ -18,5 +20,11 @@ public class RNUsbConnectionModule extends ReactContextBaseJavaModule {
   @Override
   public String getName() {
     return "RNUsbConnection";
+  }
+
+  @ReactMethod
+  public void show(String text) {
+    Context context = getReactApplicationContext();
+    Toast.makeText(context, text, Toast.LENGTH_LONG).show();
   }
 }

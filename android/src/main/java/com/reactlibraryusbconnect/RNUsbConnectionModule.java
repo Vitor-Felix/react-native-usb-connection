@@ -2,6 +2,10 @@
 package com.reactlibraryusbconnect;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -23,8 +27,12 @@ public class RNUsbConnectionModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void show(String text) {
-    Context context = getReactApplicationContext();
-    Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+  public static boolean isConnected(Context context) {
+    Intent intent = context.registerReceiver(null, new IntentFilter("android.hardware.usb.action.USB_STATE"));
+    return intent.getExtras().getBoolean("connected");
   }
+//  public void show(String text) {
+//    Context context = getReactApplicationContext();
+//    Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+//  }
 }
